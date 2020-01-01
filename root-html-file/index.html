@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src *  data: blob: 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline';">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src *  data: blob: 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline';"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Your application</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="importmap-type" content="systemjs-importmap">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
     <script type="systemjs-importmap">
       {
         "imports": {
@@ -17,8 +38,20 @@
         }
       }
     </script>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.5/system/single-spa.min.js" as="script" crossorigin="anonymous" />
-    <script src='https://unpkg.com/core-js-bundle@3.1.4/minified.js'></script>
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.5/system/single-spa.min.js"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./root.css" />
+    <script src="https://unpkg.com/core-js-bundle@3.1.4/minified.js"></script>
     <script src="https://unpkg.com/zone.js"></script>
     <script src="https://unpkg.com/import-map-overrides@1.6.0/dist/import-map-overrides.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/system.min.js"></script>
@@ -27,41 +60,68 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script>
   </head>
   <body>
+    <div id="angular-nav"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div id="angular-app1"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div id="angular-app2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
-      System.import('single-spa').then(function (singleSpa) {
+      System.import("single-spa").then(function(singleSpa) {
         singleSpa.registerApplication(
-          'navbar',
-          function () {
-            return System.import('navbar');
+          "navbar",
+          function() {
+            return System.import("navbar");
           },
-          function (location) {
+          function(location) {
             return true;
-          }
-        )
-
-        singleSpa.registerApplication(
-          'app1',
-          function () {
-            return System.import('app1');
-          },
-          function (location) {
-            return location.pathname.startsWith('/app1');
           }
         );
 
         singleSpa.registerApplication(
-          'app2',
-          function () {
-            return System.import('app2');
+          "app1",
+          function() {
+            return System.import("app1");
           },
-          function (location) {
-            return location.pathname.startsWith('/app2');
+          function(location) {
+            // return true;
+            return (
+              location.pathname.startsWith("/app1") ||
+              location.pathname.startsWith("/home")
+            );
           }
-        )
+        );
+
+        singleSpa.registerApplication(
+          "app2",
+          function() {
+            return System.import("app2");
+          },
+          function(location) {
+            // return true;
+            return (
+              location.pathname.startsWith("/app2") ||
+              location.pathname.startsWith("/home")
+            );
+          }
+        );
 
         singleSpa.start();
-      })
+      });
     </script>
-    <import-map-overrides-full></import-map-overrides-full>
+    <!-- <import-map-overrides-full></import-map-overrides-full> -->
   </body>
 </html>

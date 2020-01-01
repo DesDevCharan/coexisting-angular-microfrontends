@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <li>
     <a routerLink="/">
       Home
@@ -14,4 +14,19 @@
       App 2
     </a>
   </li>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/">MICROFE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLink="/app1">App1</a>
+      <a class="nav-item nav-link" routerLink="/app2">App2</a>
+      <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+    </div>
+  </div>
 </nav>
